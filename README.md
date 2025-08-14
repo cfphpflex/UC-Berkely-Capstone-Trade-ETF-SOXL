@@ -159,7 +159,7 @@ cv_folds = 5
  
 ## 📊 Visualizations
 
-The capstone project includes comprehensive visualizations saved in the `charts/` folder:
+visualizations metrics saved in the `charts/` folder by  trade_supertrend_SOXL.py :
 ### Built-in Metrics Analysis & Chart Generation
 - **Automatic Chart Generation**: All charts saved to `charts/` folder
 - **Comprehensive Metrics**: Top 5 critical metrics summary
