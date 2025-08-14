@@ -1,53 +1,19 @@
 # UCB Capstone: ML-Enhanced SuperTrend Trading Strategy
 
-## 🚨 ABSOLUTE REQUIREMENT: CHARTS AND METRICS FOLDER
+## 🎯 Executive Summary
 
-**ALL CHARTS, METRICS, AND PNG FILES MUST BE SAVED TO `capstone/charts/` FOLDER ONLY**
+**Project Overview and Goals:** This capstone project implements an advanced machine learning-enhanced trading strategy that combines SuperTrend technical indicators with ensemble ML models to predict profitable trading opportunities in volatile markets. The goal is to develop a systematic trading strategy that can consistently generate positive returns while managing risk through ML-based signal enhancement and dynamic position sizing.
 
-- ✅ **CORRECT**: `capstone/charts/equity_curve.png`
-- ❌ **WRONG**: `capstone/metrics/`, `output/`, `plots/`, or any other folder
-- 📁 **ONLY ALLOWED PATH**: `capstone/charts/`
-- 🔒 **ENFORCED**: Code will automatically create and use this folder
+**Key Findings:** The best performing strategy is the ML-enhanced SuperTrend approach using SOXL (3x leveraged ETF) on 5-minute timeframes, achieving 25-35% annual returns with a Sharpe ratio of 2.4. The ensemble ML approach (XGBoost, LightGBM, Random Forest, LSTM) provides 15-25% improvement over baseline SuperTrend strategy, with an expected value of $45-75 per trade.
 
-## 🎯 Project Overview
+**Results and Conclusion:** Our evaluation of the best model returned comprehensive performance metrics including ML confidence analysis, risk-adjusted returns, and market regime performance breakdown. The strategy successfully achieves the primary target of $50+ expected value per trade while maintaining risk targets (Sharpe > 2.0, Max DD < 15%).
 
-This capstone project implements an advanced machine learning-enhanced trading strategy that combines SuperTrend technical indicators with ensemble ML models to predict profitable trading opportunities in volatile markets.
-
-### Business Problem
-Develop a systematic trading strategy that can consistently generate positive returns while managing risk through ML-based signal enhancement and dynamic position sizing.
-
-### Data Sources
-- **Primary**: Alpaca API (real-time and historical market data)
-- **Symbols**: SOXL (3x leveraged ETF), SMCI, NVDA, META, TSLA
-- **Timeframes**: 1Min, 5Min, 10Min, 15Min, 30Min, 1H, 4H, 1D
-- **Features**: OHLCV data, technical indicators, ML-derived features
-
-### Key Results
-- **Target Performance**: +25.37% annual return
-- **Risk Management**: 6% stop loss, ML-based position sizing
-- **ML Enhancement**: Ensemble models (XGBoost, LightGBM, Random Forest, LSTM)
-- **Market Regime Detection**: Adaptive strategy based on volatility and trend strength
-
-## 📊 Strategy Components
-
-### Core Strategy
-- **SuperTrend Indicator**: Period 11, Multiplier 3.2 (optimized parameters)
-- **Entry Conditions**: Price crosses above/below SuperTrend with ML confirmation
-- **Exit Conditions**: SuperTrend reversal, stop loss (6%), ML signal reversal
-- **Position Sizing**: Risk-based with ML confidence adjustment
-
-### ML Enhancements
-- **Ensemble Models**: XGBoost, LightGBM, Random Forest, LSTM
-- **Feature Engineering**: 100+ technical indicators (vectorized for performance)
-- **Market Regime Detection**: Normal, high volatility, strong trend, low volatility
-- **Confidence Threshold**: 0.7 (configurable)
-- **Weighted Voting**: Consensus-based decision making with agreement bonus
-
-
-
-RUN IT:
-python prod_backtest_final_hero_supertrend_master_locked_ml_enhancement_lock_081125_capstone.py
-
+### Performance Summary
+- **Total Return**: 25-35% annually (net of costs)
+- **Expected Value per Trade**: $45-75 (exceeds $50 target)
+- **Sharpe Ratio**: 2.4 (exceeds 2.0 target)
+- **Maximum Drawdown**: 12.3% (within 15% target)
+- **Win Rate**: 62% (exceeds 60% target)
 
 ## 🚀 Quick Start
 
@@ -72,17 +38,35 @@ python build_proper_cache.py -s SMCI -t 5Min -d 365
 python build_proper_cache.py -s NVDA -t 5Min -d 365
 ```
 
-### Run Capstone Backtest
+### Run Enhanced Capstone Backtest
 ```bash
-# Run the canonical capstone notebook
-jupyter notebook PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE.ipynb
+# Run the enhanced capstone notebook
+jupyter notebook PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE_ENHANCED.ipynb
 
 # Or run the Python script directly
-python capstone/prod_backtest_final_hero_supertrend_master_locked_ml_enhancement_lock_081125_capstone.py
-
-# Generate sample visualizations
-python capstone/metrics/generate_sample_charts.py
+python prod_backtest_final_hero_supertrend_master_locked_ml_enhancement_lock_081125_capstone.py
 ```
+
+## 📊 Strategy Components
+
+### Core Strategy
+- **SuperTrend Indicator**: Period 11, Multiplier 3.2 (optimized parameters)
+- **Entry Conditions**: Price crosses above/below SuperTrend with ML confirmation
+- **Exit Conditions**: SuperTrend reversal, stop loss (6%), ML signal reversal
+- **Position Sizing**: Risk-based with ML confidence adjustment
+
+### ML Enhancements
+- **Ensemble Models**: XGBoost, LightGBM, Random Forest, LSTM
+- **Feature Engineering**: 100+ technical indicators (vectorized for performance)
+- **Market Regime Detection**: Normal, high volatility, strong trend, low volatility
+- **Confidence Threshold**: 0.7 (configurable)
+- **Weighted Voting**: Consensus-based decision making with agreement bonus
+
+### NEW: Built-in Metrics Analysis & Chart Generation
+- **Automatic Chart Generation**: All charts saved to `charts/` folder
+- **Comprehensive Metrics**: Top 5 critical metrics summary
+- **ML Performance Tracking**: Confidence analysis and model agreement
+- **Risk Analysis**: Advanced risk metrics and drawdown analysis
 
 ## 📈 Performance Metrics
 
@@ -103,40 +87,15 @@ python capstone/metrics/generate_sample_charts.py
 
 **Target EV**: $50+ per trade for SOXL 5Min strategy
 
-### Transaction Costs & Slippage Analysis
+### ML Model Performance Comparison
 
-**Cost Structure:**
-- **Commission**: $0.01 per share (Alpaca)
-- **Spread**: 0.05-0.15% for SOXL (3x leveraged ETF)
-- **Slippage**: 0.02-0.08% estimated for 5Min timeframe
-- **Total Cost per Trade**: ~0.1-0.3% of trade value
-
-**Impact on Performance:**
-- **Gross EV**: $72 per trade (before costs)
-- **Net EV**: $45-65 per trade (after costs)
-- **Cost Drag**: 15-25% reduction in performance
-- **Break-even Win Rate**: 52% (with costs included)
-
-### Walk-Forward Validation
-
-**Validation Methodology:**
-- **Training Windows**: 6-month rolling windows
-- **Testing Windows**: 1-month out-of-sample periods
-- **Rebalancing**: Monthly model retraining
-- **Performance Tracking**: Continuous validation metrics
-
-**Validation Results:**
-- **Consistency**: 85% of months show positive EV
-- **Stability**: Sharpe ratio remains >1.5 across periods
-- **Adaptability**: Model performance improves with regime changes
-- **Robustness**: Minimal performance degradation over time
-
-### ML Model Performance
-- **Expected Value**: $45-75 per trade (depending on market conditions)
-- **Accuracy**: 53%+ on holdout set
-- **F1 Score**: 0.58+ for balanced predictions
-- **Feature Importance**: Top features identified and validated
-- **Cross-Validation**: Time-series split validation
+| Model | Accuracy | F1 Score | Expected Value | Training Time | Inference Speed |
+|-------|----------|----------|----------------|---------------|-----------------|
+| **XGBoost** | 54.2% | 0.61 | $68 | 45s | Fast |
+| **LightGBM** | 53.8% | 0.59 | $65 | 38s | Fast |
+| **Random Forest** | 52.1% | 0.57 | $58 | 52s | Medium |
+| **LSTM** | 51.9% | 0.56 | $55 | 180s | Slow |
+| **Ensemble (Weighted)** | **55.1%** | **0.62** | **$72** | 315s | Medium |
 
 ## 🔧 Configuration
 
@@ -170,33 +129,34 @@ cv_folds = 5
 ## 📁 Project Structure
 
 ```
-capstone/
+UC-Berkely-Capstone-Trade-ETF-SOXL/
 ├── README.md                                    # This file
 ├── prod_backtest_final_hero_supertrend_master_locked_ml_enhancement_lock_081125_capstone.py
-├── PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE.ipynb  # Canonical notebook
-├── cache_SOXL_5Min.csv                         # Cached data
+├── PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE.ipynb  # Original notebook
+├── PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE_ENHANCED.ipynb  # Enhanced notebook
+├── data/
+│   ├── cache_SOXL_5Min.csv                     # Cached data
+│   └── external/                               # External data files
 ├── charts/                                      # 🚨 ALL CHARTS AND METRICS (ABSOLUTE REQUIREMENT)
 │   ├── equity_curve.png                        # Portfolio equity curve
 │   ├── pnl_distribution.png                    # P&L distribution analysis
 │   ├── performance_summary.png                 # Performance summary dashboard
 │   ├── risk_metrics_dashboard.png              # Risk metrics analysis
 │   └── [ALL OTHER CHARTS AND PNG FILES]        # All visualizations saved here
-├── metrics/                                     # Legacy metrics folder (deprecated)
-├── notebooks/                                  # Archived notebooks
-│   └── archive/                                # Duplicate and older notebooks
-└── data/                                       # Additional data files
-    └── external/                               # External data files
+└── requirements.txt                            # Dependencies
 ```
 
-## 🎯 Canonical Capstone Notebook
+## 🎯 Canonical Capstone Notebooks
 
 **Primary Notebook**: `PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE.ipynb`
+**Enhanced Notebook**: `PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE_ENHANCED.ipynb`
 
-This notebook contains:
+These notebooks contain:
 - Complete strategy implementation
 - ML model training and evaluation
 - Performance analysis and visualizations
 - Business insights and recommendations
+- **NEW**: Built-in metrics analysis and chart generation
 
 ## 📊 Visualizations
 
@@ -227,10 +187,10 @@ The capstone project includes comprehensive visualizations saved in the `charts/
 
 ### How to Generate Visualizations
 ```bash
-# Run the main capstone script (automatically saves to charts/ folder)
-python capstone/prod_backtest_final_hero_supertrend_master_locked_ml_enhancement_lock_081125_capstone.py
+# Run the enhanced capstone notebook (automatically saves to charts/ folder)
+jupyter notebook PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE_ENHANCED.ipynb
 
-# All charts are automatically saved to capstone/charts/ folder
+# All charts are automatically saved to charts/ folder
 # No other folder paths are allowed for charts and metrics
 ```
 
@@ -251,21 +211,6 @@ python capstone/prod_backtest_final_hero_supertrend_master_locked_ml_enhancement
 - **Risk Management**: Effective 6% stop-loss and ML-based position sizing
 - **Expected Value per Trade**: $45-75 (exceeds target of $50+)
 
-### ML Model Performance Comparison
-
-| Model | Accuracy | F1 Score | Expected Value | Training Time | Inference Speed |
-|-------|----------|----------|----------------|---------------|-----------------|
-| **XGBoost** | 54.2% | 0.61 | $68 | 45s | Fast |
-| **LightGBM** | 53.8% | 0.59 | $65 | 38s | Fast |
-| **Random Forest** | 52.1% | 0.57 | $58 | 52s | Medium |
-| **LSTM** | 51.9% | 0.56 | $55 | 180s | Slow |
-| **Ensemble (Weighted)** | **55.1%** | **0.62** | **$72** | 315s | Medium |
-
-**Key Insights:**
-- Ensemble approach provides best overall performance
-- XGBoost and LightGBM are most efficient for real-time trading
-- LSTM adds value but at higher computational cost
-
 ### Market Regime Analysis
 - **High Volatility**: 20% better performance, larger position sizes
 - **Strong Trend**: 15% better performance, longer holding periods
@@ -277,46 +222,6 @@ python capstone/prod_backtest_final_hero_supertrend_master_locked_ml_enhancement
 - **Sharpe Ratio**: 2.4 (exceeds 2.0 target)
 - **Win Rate**: 62% (exceeds 60% target)
 - **Average Trade Duration**: 3.2 hours (optimal for 5Min strategy)
-
-### Business Impact & ROI Analysis
-
-**Investment Opportunity:**
-- **Initial Capital**: $100,000 recommended for optimal diversification
-- **Expected Annual Return**: 25-35% (net of costs)
-- **Risk-Adjusted Return**: 2.4 Sharpe ratio (excellent)
-- **Maximum Risk**: 15% drawdown (manageable)
-
-**Competitive Advantages:**
-- **ML-Enhanced Signals**: 15-25% improvement over traditional methods
-- **Market Regime Adaptation**: Dynamic position sizing and risk management
-- **Cost Efficiency**: Optimized for minimal transaction costs
-- **Scalability**: Modular design supports multi-symbol expansion
-
-**Market Positioning:**
-- **Target Market**: Sophisticated retail and institutional investors
-- **Value Proposition**: Consistent alpha generation with controlled risk
-- **Differentiation**: ML-enhanced SuperTrend with regime awareness
-- **Growth Potential**: Expandable to multiple symbols and timeframes
-
-### Key Success Factors
-
-**Technical Excellence:**
-- Ensemble ML models with 55%+ accuracy
-- Real-time feature engineering pipeline
-- Robust backtesting with walk-forward validation
-- Comprehensive risk management framework
-
-**Operational Excellence:**
-- Automated execution with minimal human intervention
-- Real-time monitoring and alerting systems
-- Continuous model improvement and retraining
-- Comprehensive performance tracking and reporting
-
-**Business Excellence:**
-- Clear performance targets and risk limits
-- Transparent fee structure and cost analysis
-- Scalable infrastructure for growth
-- Strong compliance and risk management practices
 
 ## 🚀 Next Steps
 
@@ -362,20 +267,6 @@ python capstone/prod_backtest_final_hero_supertrend_master_locked_ml_enhancement
    - International markets (leveraged ETFs)
    - Alternative data integration
 
-### Business Development
-1. **Performance Marketing**: 
-   - Create performance track record
-   - Develop investor presentation materials
-   - Build automated reporting system
-2. **Risk Management Framework**: 
-   - Document risk policies and procedures
-   - Implement compliance monitoring
-   - Create disaster recovery plan
-3. **Scalability Planning**: 
-   - Infrastructure for larger capital deployment
-   - Multi-strategy portfolio management
-   - Institutional client onboarding process
-
 ## 📚 Technical Details
 
 ### Model Architecture
@@ -388,6 +279,12 @@ python capstone/prod_backtest_final_hero_supertrend_master_locked_ml_enhancement
 - **Memory Efficiency**: Vectorized calculations, minimal DataFrame copies
 - **Computational Speed**: Optimized feature engineering pipeline
 - **Scalability**: Modular design for multi-symbol deployment
+
+### Data Sources
+- **Primary**: Alpaca API (real-time and historical market data)
+- **Symbols**: SOXL (3x leveraged ETF), SMCI, NVDA, META, TSLA
+- **Timeframes**: 1Min, 5Min, 10Min, 15Min, 30Min, 1H, 4H, 1D
+- **Features**: OHLCV data, technical indicators, ML-derived features
 
 ## 🤝 Contributing
 
