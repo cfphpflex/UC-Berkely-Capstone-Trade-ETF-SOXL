@@ -98,7 +98,7 @@
    - Options strategies for hedging
    - International markets (leveraged ETFs)
    - Alternative data integration
-   
+
 
 ## 🚀 Quick Start
 
@@ -160,7 +160,7 @@ cv_folds = 5
 ## 📊 Visualizations
 
 The capstone project includes comprehensive visualizations saved in the `charts/` folder:
-### NEW: Built-in Metrics Analysis & Chart Generation
+### Built-in Metrics Analysis & Chart Generation
 - **Automatic Chart Generation**: All charts saved to `charts/` folder
 - **Comprehensive Metrics**: Top 5 critical metrics summary
 - **ML Performance Tracking**: Confidence analysis and model agreement
