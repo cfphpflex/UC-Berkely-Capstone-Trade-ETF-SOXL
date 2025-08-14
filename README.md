@@ -15,39 +15,7 @@
 - **Maximum Drawdown**: 12.3% (within 15% target)
 - **Win Rate**: 62% (exceeds 60% target)
 
-## 🚀 Quick Start
 
-### Prerequisites
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Set up environment variables
-export ALPACA_API_KEY="your_api_key"
-export ALPACA_SECRET_KEY="your_secret_key"
-export PAPER="true"
-```
-
-### Build Data Cache
-```bash
-# Build 5-minute data for SOXL (365 days)
-python build_proper_cache.py -s SOXL -t 5Min -d 365
-
-# Build data for other symbols
-python build_proper_cache.py -s SMCI -t 5Min -d 365
-python build_proper_cache.py -s NVDA -t 5Min -d 365
-```
-
-### Run Enhanced Capstone Backtest
-```bash
-# Run the enhanced capstone notebook
-jupyter notebook PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE_ENHANCED.ipynb
-
-# Or run the Python script directly
-python prod_backtest_final_hero_supertrend_master_locked_ml_enhancement_lock_081125_capstone.py
-```
-
-## 📊 Strategy Components
 
 ### Core Strategy
 - **SuperTrend Indicator**: Period 11, Multiplier 3.2 (optimized parameters)
@@ -62,11 +30,7 @@ python prod_backtest_final_hero_supertrend_master_locked_ml_enhancement_lock_081
 - **Confidence Threshold**: 0.7 (configurable)
 - **Weighted Voting**: Consensus-based decision making with agreement bonus
 
-### NEW: Built-in Metrics Analysis & Chart Generation
-- **Automatic Chart Generation**: All charts saved to `charts/` folder
-- **Comprehensive Metrics**: Top 5 critical metrics summary
-- **ML Performance Tracking**: Confidence analysis and model agreement
-- **Risk Analysis**: Advanced risk metrics and drawdown analysis
+
 
 ## 📈 Performance Metrics
 
@@ -76,15 +40,7 @@ python prod_backtest_final_hero_supertrend_master_locked_ml_enhancement_lock_081
 - **Sharpe Ratio**: >2.0 target
 - **Maximum Drawdown**: <15% target
 - **Average Trade PnL**: Positive expectancy
-
-### Primary Evaluation Metric: **Expected Value per Trade (EV)**
-
-**Why EV is our primary metric:**
-- **Business Alignment**: Directly measures profitability per trade, which is the core business objective
-- **Risk-Adjusted**: Incorporates both win rate and average trade size
-- **Practical**: Translates directly to portfolio performance
-- **Formula**: EV = (Win Rate × Average Winner) - (Loss Rate × Average Loser)
-
+ 
 **Target EV**: $50+ per trade for SOXL 5Min strategy
 
 ### ML Model Performance Comparison
@@ -97,131 +53,7 @@ python prod_backtest_final_hero_supertrend_master_locked_ml_enhancement_lock_081
 | **LSTM** | 51.9% | 0.56 | $55 | 180s | Slow |
 | **Ensemble (Weighted)** | **55.1%** | **0.62** | **$72** | 315s | Medium |
 
-## 🔧 Configuration
 
-### Strategy Parameters
-```python
-# HERO Optimized Parameters
-supertrend_period = 11
-supertrend_multiplier = 3.2
-stop_loss_pct = 0.06
-min_holding_bars = 175
-risk_per_trade_pct = 0.01
-ml_confidence_threshold = 0.7
-```
-
-### ML Model Configuration
-```python
-# Ensemble Weights
-model_weights = {
-    'XGBoost': 0.3,
-    'LightGBM': 0.3,
-    'RandomForest': 0.25,
-    'LSTM': 0.15
-}
-
-# Feature Engineering
-feature_count = 100
-lookback_period = 100
-cv_folds = 5
-```
-
-## 📁 Project Structure
-
-```
-UC-Berkely-Capstone-Trade-ETF-SOXL/
-├── README.md                                    # This file
-├── prod_backtest_final_hero_supertrend_master_locked_ml_enhancement_lock_081125_capstone.py
-├── PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE.ipynb  # Original notebook
-├── PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE_ENHANCED.ipynb  # Enhanced notebook
-├── data/
-│   ├── cache_SOXL_5Min.csv                     # Cached data
-│   └── external/                               # External data files
-├── charts/                                      # 🚨 ALL CHARTS AND METRICS (ABSOLUTE REQUIREMENT)
-│   ├── equity_curve.png                        # Portfolio equity curve
-│   ├── pnl_distribution.png                    # P&L distribution analysis
-│   ├── performance_summary.png                 # Performance summary dashboard
-│   ├── risk_metrics_dashboard.png              # Risk metrics analysis
-│   └── [ALL OTHER CHARTS AND PNG FILES]        # All visualizations saved here
-└── requirements.txt                            # Dependencies
-```
-
-## 🎯 Canonical Capstone Notebooks
-
-**Primary Notebook**: `PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE.ipynb`
-**Enhanced Notebook**: `PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE_ENHANCED.ipynb`
-
-These notebooks contain:
-- Complete strategy implementation
-- ML model training and evaluation
-- Performance analysis and visualizations
-- Business insights and recommendations
-- **NEW**: Built-in metrics analysis and chart generation
-
-## 📊 Visualizations
-
-The capstone project includes comprehensive visualizations saved in the `charts/` folder (ABSOLUTE REQUIREMENT):
-
-### Performance Charts
-- **Equity Curve**: Portfolio value over time with trade markers
-- **Drawdown Analysis**: Maximum drawdown periods and recovery
-- **Rolling Metrics**: Sharpe ratio, volatility, returns, and drawdown over time
-- **Cumulative Returns**: Performance tracking
-
-### Trade Analysis
-- **P&L Distribution**: Histogram, win/loss ratio, trade side analysis
-- **Market Regime Performance**: Performance breakdown by market conditions
-- **Trade Duration**: Holding period analysis
-- **Position Sizing**: Distribution of trade sizes
-
-### ML Model Performance
-- **Confusion Matrix**: Model prediction accuracy visualization
-- **Feature Importance**: Top features ranked by importance
-- **Model Comparison**: Performance metrics across all models
-- **ROC Curves**: Model discrimination ability
-
-### Risk Analysis
-- **Value at Risk**: Risk measurement charts
-- **Risk-Return Scatter**: Risk vs return relationship
-- **Drawdown Periods**: Analysis of recovery periods
-
-### How to Generate Visualizations
-```bash
-# Run the enhanced capstone notebook (automatically saves to charts/ folder)
-jupyter notebook PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE_ENHANCED.ipynb
-
-# All charts are automatically saved to charts/ folder
-# No other folder paths are allowed for charts and metrics
-```
-
-## 🔍 Key Findings
-
-### Business Context & Problem Statement
-**Challenge**: Develop a systematic trading strategy that can consistently generate positive returns in volatile markets while managing risk and avoiding emotional trading decisions.
-
-**Market Opportunity**: 
-- SOXL (3x leveraged ETF) provides high volatility for short-term trading opportunities
-- 5-minute timeframe allows for multiple trading opportunities per day
-- ML enhancement can improve signal quality and reduce false positives
-
-### Strategy Performance Results
-- **Best Performing Symbol**: SOXL (3x leveraged ETF) - 25-35% annual returns
-- **Optimal Timeframe**: 5Min for intraday trading - balances opportunity with risk
-- **ML Enhancement Impact**: 15-25% improvement over baseline SuperTrend strategy
-- **Risk Management**: Effective 6% stop-loss and ML-based position sizing
-- **Expected Value per Trade**: $45-75 (exceeds target of $50+)
-
-### Market Regime Analysis
-- **High Volatility**: 20% better performance, larger position sizes
-- **Strong Trend**: 15% better performance, longer holding periods
-- **Low Volatility**: 10% reduced performance, smaller position sizes
-- **Normal**: Baseline performance with standard parameters
-
-### Risk Management Validation
-- **Maximum Drawdown**: 12.3% (within 15% target)
-- **Sharpe Ratio**: 2.4 (exceeds 2.0 target)
-- **Win Rate**: 62% (exceeds 60% target)
-- **Average Trade Duration**: 3.2 hours (optimal for 5Min strategy)
 
 ## 🚀 Next Steps
 
@@ -266,6 +98,125 @@ jupyter notebook PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancemen
    - Options strategies for hedging
    - International markets (leveraged ETFs)
    - Alternative data integration
+   
+
+## 🚀 Quick Start
+
+### Prerequisites
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Set up environment variables
+export ALPACA_API_KEY="your_api_key"
+export ALPACA_SECRET_KEY="your_secret_key"
+export PAPER="true"
+```
+
+### Build Data Cache
+```bash
+# Build 5-minute data for SOXL (365 days)
+# Required: settings.ALPACA_API_KEY, settings.ALPACA_SECRET_KEY
+python build_proper_cache.py -s SOXL -t 5Min -d 365
+
+  
+# Or run the Python script directly or run the notebook
+python trade_supertrend_SOXL.py
+```
+```bash
+jupyter notebook PROD_BACKTEST_FINAL_HERO_SUPERTREND_MASTER_LOCKED_ML_Enhancement_LOCK_072325_CAPSTONE_ENHANCED.ipynb 
+```
+
+ 
+## 🔧 Configuration
+
+### Strategy Parameters
+```python
+# HERO Optimized Parameters
+supertrend_period = 11
+supertrend_multiplier = 3.2
+stop_loss_pct = 0.06
+min_holding_bars = 175
+risk_per_trade_pct = 0.01
+ml_confidence_threshold = 0.7
+```
+
+### ML Model Configuration
+```python
+# Ensemble Weights
+model_weights = {
+    'XGBoost': 0.3,
+    'LightGBM': 0.3,
+    'RandomForest': 0.25,
+    'LSTM': 0.15
+}
+
+# Feature Engineering
+feature_count = 100
+lookback_period = 100
+cv_folds = 5
+```
+ 
+## 📊 Visualizations
+
+The capstone project includes comprehensive visualizations saved in the `charts/` folder:
+### NEW: Built-in Metrics Analysis & Chart Generation
+- **Automatic Chart Generation**: All charts saved to `charts/` folder
+- **Comprehensive Metrics**: Top 5 critical metrics summary
+- **ML Performance Tracking**: Confidence analysis and model agreement
+- **Risk Analysis**: Advanced risk metrics and drawdown analysis
+
+### Performance Charts
+- **Equity Curve**: Portfolio value over time with trade markers
+- **Drawdown Analysis**: Maximum drawdown periods and recovery
+- **Rolling Metrics**: Sharpe ratio, volatility, returns, and drawdown over time
+- **Cumulative Returns**: Performance tracking
+
+### Trade Analysis
+- **P&L Distribution**: Histogram, win/loss ratio, trade side analysis
+- **Market Regime Performance**: Performance breakdown by market conditions
+- **Trade Duration**: Holding period analysis
+- **Position Sizing**: Distribution of trade sizes
+
+### ML Model Performance
+- **Confusion Matrix**: Model prediction accuracy visualization
+- **Feature Importance**: Top features ranked by importance
+- **Model Comparison**: Performance metrics across all models
+- **ROC Curves**: Model discrimination ability
+
+### Risk Analysis
+- **Value at Risk**: Risk measurement charts
+- **Risk-Return Scatter**: Risk vs return relationship
+- **Drawdown Periods**: Analysis of recovery periods
+ 
+
+### Business Context & Problem Statement
+**Challenge**: Develop a systematic trading strategy that can consistently generate positive returns in volatile markets while managing risk and avoiding emotional trading decisions.
+
+**Market Opportunity**: 
+- SOXL (3x leveraged ETF) provides high volatility for short-term trading opportunities
+- 5-minute timeframe allows for multiple trading opportunities per day
+- ML enhancement can improve signal quality and reduce false positives
+
+### Strategy Performance Results
+- **Best Performing Symbol**: SOXL (3x leveraged ETF) - 25-35% annual returns
+- **Optimal Timeframe**: 5Min for intraday trading - balances opportunity with risk
+- **ML Enhancement Impact**: 15-25% improvement over baseline SuperTrend strategy
+- **Risk Management**: Effective 6% stop-loss and ML-based position sizing
+- **Expected Value per Trade**: $45-75 (exceeds target of $50+)
+
+### Market Regime Analysis
+- **High Volatility**: 20% better performance, larger position sizes
+- **Strong Trend**: 15% better performance, longer holding periods
+- **Low Volatility**: 10% reduced performance, smaller position sizes
+- **Normal**: Baseline performance with standard parameters
+
+### Risk Management Validation
+- **Maximum Drawdown**: 12.3% (within 15% target)
+- **Sharpe Ratio**: 2.4 (exceeds 2.0 target)
+- **Win Rate**: 62% (exceeds 60% target)
+- **Average Trade Duration**: 3.2 hours (optimal for 5Min strategy)
+
 
 ## 📚 Technical Details
 
@@ -294,12 +245,4 @@ This project follows strict quality requirements:
 - No new bugs introduced; maintain or improve P&L performance
 - Comprehensive documentation and error handling
 
-## 📄 License
-
-This project is part of the UCB Capstone program. All rights reserved.
-
----
-
-**Last Updated**: August 2025  
-**Version**: 1.0  
-**Status**: Capstone Complete - Ready for Paper Trading Deployment
+ 
