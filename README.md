@@ -1,8 +1,8 @@
-# UCB Capstone: ML-Enhanced SuperTrend Trading Strategy
+# UC Berkeley AI/ML Capstone: ML-Enhanced SuperTrend Trading Strategy
 
 ## 🎯 Executive Summary
 
-**Project Overview:** This capstone project implements an advanced machine learning-enhanced trading strategy that combines SuperTrend technical indicators with ensemble ML models to predict profitable trading opportunities in volatile markets. The goal is to develop a systematic trading strategy that can consistently generate positive returns while managing risk through ML-based signal enhancement and dynamic position sizing.
+**Project Overview:** This capstone project implements an advanced machine learning-enhanced trading strategy combining SuperTrend technical indicators with ensemble ML models to predict profitable trading opportunities in volatile markets. The goal is to develop a systematic trading strategy that can consistently generate positive returns while managing risk through ML-based signal enhancement and dynamic position sizing.
 
 **Key Findings:** The best performing strategy is the ML-enhanced SuperTrend approach using SOXL (3x leveraged ETF) on 5-minute timeframes, achieving 25-35% annual returns with a Sharpe ratio of 2.4. The ensemble ML approach (XGBoost, LightGBM, Random Forest, LSTM) provides 15-25% improvement over baseline SuperTrend strategy, with an expected value of $45-75 per trade.
 
@@ -14,7 +14,6 @@
 - **Sharpe Ratio**: 2.4 (exceeds 2.0 target)
 - **Maximum Drawdown**: 12.3% (within 15% target)
 - **Win Rate**: 62% (exceeds 60% target)
-
 
 
 ### Core Strategy
@@ -29,7 +28,6 @@
 - **Market Regime Detection**: Normal, high volatility, strong trend, low volatility
 - **Confidence Threshold**: 0.7 (configurable)
 - **Weighted Voting**: Consensus-based decision making with agreement bonus
-
 
 
 ## 📈 Performance Metrics
@@ -52,7 +50,6 @@
 | **Random Forest** | 52.1% | 0.57 | $58 | 52s | Medium |
 | **LSTM** | 51.9% | 0.56 | $55 | 180s | Slow |
 | **Ensemble (Weighted)** | **55.1%** | **0.62** | **$72** | 315s | Medium |
-
 
 
 ## 🚀 Next Steps
