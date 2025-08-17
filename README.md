@@ -234,7 +234,6 @@ visualizations metrics saved in the `charts/` folder by  trade_supertrend_SOXL.p
 - **Timeframes**: 1Min, 5Min, 10Min, 15Min, 30Min, 1H, 4H, 1D
 - **Features**: OHLCV data, technical indicators, ML-derived features
 
-## 🤝 Contributing
 
 This project follows strict quality requirements:
 - All code changes must pass unit, integration, and regression tests
